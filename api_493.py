@@ -1,3 +1,5 @@
+import html
+
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -18,12 +20,12 @@ posts = [
 
 @app.route("/")
 @app.route("/home")
-def hello() -> str:
+def home() -> html:
     return render_template('home.html', posts=posts)
 
 
 @app.route("/about")
-def about():
+def about() -> html:
     return render_template('about.html', title="About")
 
 
