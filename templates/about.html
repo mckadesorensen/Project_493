@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    {% if title %}
-      <title> {{title}} </title>
-    {% else %}
-      <title>CS493 Project: About</title>
-    {% endif %}
-  </head>
-  <body>
-      <h1>About Page</h1>
-  </body>
-</html>
+{% extends "layout.html" %}
+{% block content%}
+    <h1>CS493 Project About Page</h1>
+{% endblock content %}
