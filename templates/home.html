@@ -1,7 +1,5 @@
 {% extends "layout.html" %}
 {% block content%}
-    <h1>CS493 Project Home Page</h1>
-    <h2>Here are some fake tweets from the creators</h2>
       {% for post in posts%}
         <h3>By {{ post.account}}</h3>
         <p> Tweeted on {{ post.date_posted }} </p>
