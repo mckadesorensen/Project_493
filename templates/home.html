@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% if title %}
+      <title>  {{title}} </title>
+    {% else %}
+      <title> CS493 Project: Home </title>
+    {% endif %}
+  </head>
+  <body>
+    <h1>CS493 Project Home Page</h1>
+    <h2>Here are some fake tweets from the creators</h2>
+      {% for post in posts%}
+        <h3>By {{ post.account}}</h3>
+        <p> Tweeted on {{ post.date_posted }} </p>
+        <p> {{ post.tweet }} </p>
+    {% endfor %}
+  </body>
+</html>
