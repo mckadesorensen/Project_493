@@ -1,4 +1,5 @@
 import html
+import json
 
 from flask import Flask, render_template
 
@@ -18,10 +19,16 @@ posts = [
     }
 ]
 
+
 @app.route("/")
 @app.route("/home")
 def home() -> html:
     return render_template('home.html', posts=posts)
+
+# Functions that need to be finished
+@app.route("/get_tweets")
+def get_tweets() -> json:
+    pass
 
 
 @app.route("/about")
@@ -29,8 +36,19 @@ def about() -> html:
     return render_template('about.html', title="About")
 
 
+@app.route("/login")
+def login() -> None:
+    pass
 
 
+@app.route("/logout")
+def logout() -> None:
+    pass
+
+
+@app.route("/register")
+def register() -> None:
+    pass
 
 
 if __name__ == "__main__":
