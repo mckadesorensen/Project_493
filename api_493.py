@@ -25,15 +25,16 @@ posts = [
 def home() -> html:
     return render_template('home.html', posts=posts)
 
-# Functions that need to be finished
-@app.route("/get_tweets")
-def get_tweets() -> json:
-    pass
-
 
 @app.route("/about")
 def about() -> html:
     return render_template('about.html', title="About")
+
+
+# Functions that need to be finished
+@app.route("/get_tweets")
+def get_tweets() -> json:
+    pass
 
 
 @app.route("/login")
