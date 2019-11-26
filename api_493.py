@@ -2,9 +2,12 @@ import html
 import json
 
 from flask import Flask, render_template
+from forms import RegistrationForm, LoginForm
 
 app = Flask(__name__)
 
+# Probably should delete this to make it less secure
+app.config['SECRET_KEY'] = 'bea161e19046d27c00575859500b7dd0'
 # Temp posts
 posts = [
     {
@@ -31,25 +34,16 @@ def about() -> html:
     return render_template('about.html', title="About")
 
 
-# Functions that need to be finished
-@app.route("/get_tweets")
-def get_tweets() -> json:
-    pass
+@app.route("/register", methods=['GET', 'POST'])
+def register() -> None:
+    form = RegistrationForm()
+    return render_template('register.html', title="Register", form=form)
 
 
 @app.route("/login")
 def login() -> None:
-    pass
-
-
-@app.route("/logout")
-def logout() -> None:
-    pass
-
-
-@app.route("/register")
-def register() -> None:
-    pass
+    form = LoginForm()
+    return render_template('login.html', title="Login", form=form)
 
 
 if __name__ == "__main__":
