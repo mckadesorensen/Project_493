@@ -9,20 +9,48 @@
       <title>CS493 Project</title>
     {% endif %}
   </head>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Cat Facts</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+        </li>
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" href="#">Facts</a>-->
+<!--        </li>-->
+      </ul>
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+          <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+        </div>
+    </div>
+  </nav>
   <body>
       <main role="main" class="container">
         <div class="row">
           <div class="col-md-8">
+            {% with messages = get_flashed_messages(with_categories=true)%}
+              {%if messages %}
+                {% for category, message in messages %}
+                  <div class="alert alert-{{ category }}">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
             {% block content %}{% endblock %}
           </div>
           <div class="col-md-4">
             <div class="content-section">
-              <h3>Menu</h3>
-              <p class='text-muted'>Get the latest tweets from Chenyi and McKade
+              <h3>Cats</h3>
+              <p class='text-muted'>Probably gonna be stuff about cats
                 <ul class="list-group">
-                  <li class="list-group-item list-group-item-dark">Login</li>
-                  <li class="list-group-item list-group-item-dark">Register</li>
-                  <li class="list-group-item list-group-item-dark">Latest Posts</li>
+                  <li class="list-group-item list-group-item-dark">Latest Facts</li>
                   <li class="list-group-item list-group-item-dark">Announcements</li>
                 </ul>
               </p>

@@ -1,7 +1,7 @@
 import html
 import json
 
-from flask import Flask, render_template
+from flask import Flask, render_template, flash, redirect, url_for
 from forms import RegistrationForm, LoginForm
 
 app = Flask(__name__)
@@ -31,18 +31,26 @@ def home() -> html:
 
 @app.route("/about")
 def about() -> html:
-    return render_template('about.html', title="About")
+    return render_template('about.html', title='About')
 
 
 @app.route("/register", methods=['GET', 'POST'])
 def register() -> None:
     form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!', 'success')
+        return redirect(url_for('home'))
     return render_template('register.html', title="Register", form=form)
 
 
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login() -> None:
     form = LoginForm()
+    if form.email.data == "dmsorensen@alaska.edu" and form.password.data == 'password':
+        flash(f'Logged in!', 'success')
+        return redirect(url_for('home'))
+    else:
+        flash('Login Unsuccessful. Try again.', 'danger')
     return render_template('login.html', title="Login", form=form)
 
 
