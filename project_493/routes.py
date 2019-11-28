@@ -1,13 +1,9 @@
 import html
-import json
+from flask import render_template, flash, redirect, url_for
+from project_493.forms import RegistrationForm, LoginForm
+from project_493.models import User, Post
+from project_493 import app
 
-from flask import Flask, render_template, flash, redirect, url_for
-from forms import RegistrationForm, LoginForm
-
-app = Flask(__name__)
-
-# Probably should delete this to make it less secure
-app.config['SECRET_KEY'] = 'bea161e19046d27c00575859500b7dd0'
 # Temp posts
 posts = [
     {
@@ -52,7 +48,3 @@ def login() -> None:
     else:
         flash('Login Unsuccessful. Try again.', 'danger')
     return render_template('login.html', title="Login", form=form)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
