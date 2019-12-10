@@ -1,3 +1,6 @@
+"""
+Forms.py contains all the classes for CatBook
+"""
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
@@ -7,6 +10,7 @@ from project_493.models import User
 
 
 class RegistrationForm(FlaskForm):
+    """ Form for registering """
     username = StringField("Username", validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -25,6 +29,7 @@ class RegistrationForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
+        """ Form for logging in """
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField("Remember Me")
@@ -32,6 +37,7 @@ class LoginForm(FlaskForm):
 
 
 class UpdateAccountForm(FlaskForm):
+        """ Form for making changes to profile """
     username = StringField("Username", validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
@@ -51,6 +57,7 @@ class UpdateAccountForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
+        """ Form for making a post """
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
     submit = SubmitField('Post')
